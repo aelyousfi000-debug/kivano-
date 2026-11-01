@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KIVANO: Knowledge Without Limits</title>
+<meta name="description" content="KIVANO is a digital bookstore for PDF ebooks. Browse, buy and download instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1eadc;--surface:#faf6ee;--ink:#141210;--mute:#6b6458;--line:#d9cfbc;--btn:#141210;--btnt:#faf6ee;--serif:'Newsreader',Georgia,'Times New Roman',serif;--sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#121110;--surface:#1b1a17;--ink:#f1eadc;--mute:#a39a89;--line:#33302a;--btn:#f1eadc;--btnt:#121110}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#121110;--surface:#1b1a17;--ink:#f1eadc;--mute:#a39a89;--line:#33302a;--btn:#f1eadc;--btnt:#121110}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;margin:0;letter-spacing:-.01em}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:.14em;text-decoration:none}
+nav{display:flex;gap:6px;align-items:center}
+nav a.l{padding:8px 10px;text-decoration:none;color:var(--mute);font-size:15px}
+nav a.l:hover{color:var(--ink)}
+.cartbtn{display:flex;gap:8px;align-items:center;border:1px solid var(--ink);background:transparent;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:44px}
+.cartbtn b{background:var(--btn);color:var(--btnt);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--btn);color:var(--btnt);border:1px solid var(--btn);border-radius:999px;padding:13px 24px;text-decoration:none;cursor:pointer;font-weight:500;min-height:46px;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.sm{padding:9px 16px;min-height:40px;font-size:14px}
+.hero{padding:44px 0 36px;display:grid;gap:36px}
+.hero h1{font-size:clamp(40px,10vw,84px)}
+.hero p{max-width:46ch;color:var(--mute);font-size:18px;margin:18px 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.stack{position:relative;height:300px;max-width:420px;width:100%;margin:0 auto}
+.stack .cover{position:absolute;width:190px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.stack .cover:nth-child(1){left:0;top:30px;transform:rotate(-8deg)}
+.stack .cover:nth-child(2){left:110px;top:0;transform:rotate(3deg);z-index:2}
+.stack .cover:nth-child(3){left:215px;top:46px;transform:rotate(11deg)}
+@keyframes rise{from{opacity:0;transform:translateY(24px) rotate(0)}}
+.stack .cover{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.stack .cover:nth-child(2){animation-delay:.12s}.stack .cover:nth-child(3){animation-delay:.24s}
+@media (prefers-reduced-motion:reduce){.stack .cover{animation:none}html{scroll-behavior:auto}}
+section{padding:44px 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:22px}
+.sh h2{font-size:clamp(28px,6vw,42px)}
+.sh p{margin:6px 0 0;color:var(--mute)}
+.cover{aspect-ratio:2/3;border-radius:4px 8px 8px 4px;position:relative;overflow:hidden;color:#fff;padding:16% 12% 12% 16%;display:flex;flex-direction:column;justify-content:space-between;box-shadow:inset 6px 0 0 rgba(0,0,0,.18)}
+.cover .t{font-family:var(--serif);font-size:clamp(17px,4.6vw,24px);line-height:1.05;font-weight:600}
+.cover .a{font-size:10px;letter-spacing:.06em;opacity:.8}
+.cover svg{position:absolute;right:-12%;bottom:12%;width:80%;opacity:.28}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--btn);color:var(--btnt);border-color:var(--btn)}
+.tools{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-bottom:22px}
+.tools input[type=search]{grid-column:1/-1}
+.tools input,.tools select{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:46px;width:100%}
+.grid{display:grid;gap:22px 16px;grid-template-columns:repeat(2,1fr)}
+.card{display:flex;flex-direction:column;gap:10px}
+.card .cover{cursor:pointer;transition:transform .25s}
+.card .cover:hover{transform:translateY(-4px)}
+.card h3{font-size:19px;line-height:1.15;cursor:pointer}
+.meta{color:var(--mute);font-size:13px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:12px;font-weight:600;background:var(--surface)}
+.demo{font-size:12px;color:var(--mute);font-style:italic}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+.price{font-family:var(--serif);font-size:22px;font-weight:600}
+.cats{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.cat{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface);text-align:left;cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:space-between}
+.cat b{font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.15}
+.cat span{color:var(--mute);font-size:13px}
+.why{display:grid;gap:14px}
+.why div{border-top:1px solid var(--ink);padding-top:14px}
+.why h3{font-size:22px;margin-bottom:6px}
+.why p,.rev p{margin:0;color:var(--mute)}
+.revs{display:grid;gap:14px}
+.rev{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.rev p{color:var(--ink);font-family:var(--serif);font-size:19px;margin-bottom:12px}
+.news{background:var(--btn);color:var(--btnt);border-radius:22px;padding:34px 22px}
+.news h2{font-size:clamp(28px,6vw,40px)}
+.news p{opacity:.75;margin:10px 0 20px}
+.news form{display:flex;gap:10px;flex-wrap:wrap}
+.news input{flex:1 1 220px;border-radius:999px;border:1px solid rgba(128,128,128,.5);background:transparent;color:inherit;padding:13px 18px;min-height:46px}
+.news .btn{background:var(--btnt);color:var(--btn);border-color:var(--btnt)}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:34px 0 40px;color:var(--mute);font-size:14px}
+footer .cols{display:grid;gap:22px;grid-template-columns:1fr 1fr}
+footer .cols div:first-child{grid-column:1/-1}
+footer b{color:var(--ink);display:block;margin-bottom:6px}
+footer a{display:block;text-decoration:none;padding:3px 0}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:50;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px calc(env(safe-area-inset-bottom,0px) + 18px);box-shadow:-20px 0 50px rgba(0,0,0,.25)}
+.drawer.open{transform:none}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer .items{flex:1;overflow:auto;margin:14px 0}
+.li{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.li .cover{padding:6px;font-size:0;box-shadow:none}
+.li .cover .a,.li .cover svg,.li .cover .t{display:none}
+.li small{color:var(--mute)}
+.x{background:none;border:0;color:var(--mute);cursor:pointer;min-width:44px;min-height:44px;font-size:14px;text-decoration:underline}
+.disc{display:flex;gap:8px;margin:10px 0}
+.disc input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-height:44px;min-width:0}
+.tot{display:flex;justify-content:space-between;padding:4px 0}
+.tot.g{font-family:var(--serif);font-size:24px;font-weight:600}
+.note{font-size:13px;color:var(--mute);margin:8px 0 0}
+dialog{border:0;border-radius:20px;background:var(--bg);color:var(--ink);padding:0;width:min(760px,calc(100% - 24px));max-height:calc(100% - 24px)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.pd{display:grid;gap:22px;padding:22px}
+.pd .cover{max-width:230px;width:100%;margin:0 auto}
+.pd ul{padding-left:18px;margin:6px 0 14px;color:var(--mute)}
+.pd h3{font-size:18px;margin-top:14px}
+.pd .close{position:sticky;top:0;justify-self:end}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translate(-50%,30px);background:var(--btn);color:var(--btnt);padding:12px 20px;border-radius:999px;opacity:0;transition:.3s;z-index:70;pointer-events:none;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.empty{text-align:center;color:var(--mute);padding:36px 0}
+@media (min-width:700px){
+.hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:72px 0 56px}
+.tools{grid-template-columns:2fr 1fr 1fr 1fr}.tools input[type=search]{grid-column:auto}
+.grid{grid-template-columns:repeat(3,1fr);gap:30px 22px}
+.cats{grid-template-columns:repeat(4,1fr)}
+.why,.revs{grid-template-columns:repeat(3,1fr)}
+.pd{grid-template-columns:230px 1fr;padding:30px}
+.news{padding:54px}
+footer .cols{grid-template-columns:2fr 1fr 1fr 1fr}footer .cols div:first-child{grid-column:auto}}
+@media (min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){nav a.l{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+<a class="logo" href="#top" aria-label="KIVANO home">KIVANO</a>
+<nav aria-label="Main"><a class="l" href="#shop">Shop</a><a class="l" href="#categories">Categories</a><a class="l" href="#why">Why KIVANO</a>
+<button class="cartbtn" id="openCart" aria-label="Open cart">Cart <b id="cnt">0</b></button></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1>Discover knowledge. Unlock possibilities.</h1>
+<p>KIVANO is a digital bookstore for PDF ebooks. Pick a title, pay once, and download it to read on any device.</p>
+<div class="cta"><a class="btn" href="#shop">Shop now</a><a class="btn o" href="#picks">Explore bestsellers</a></div>
+</div>
+<div class="stack" id="stack" aria-hidden="true"></div>
+</div>
+
+<section id="picks"><div class="wrap">
+<div class="sh"><div><h2>Bestsellers</h2><p>Sample titles that show how the store will look.</p></div></div>
+<div class="grid" id="picksGrid"></div>
+</div></section>
+
+<section id="categories"><div class="wrap">
+<div class="sh"><h2>Browse by category</h2></div>
+<div class="cats" id="catGrid"></div>
+</div></section>
+
+<section id="shop"><div class="wrap">
+<div class="sh"><div><h2>The PDF ebook shop</h2><p id="resCount"></p></div></div>
+<div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+<div class="tools">
+<input type="search" id="q" placeholder="Search title, author or keyword" aria-label="Search">
+<select id="price" aria-label="Price filter"><option value="">Any price</option><option value="15">Under $15</option><option value="20">Under $20</option><option value="25">Under $25</option></select>
+<select id="sort" aria-label="Sort"><option value="new">Newest</option><option value="pop">Popularity</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select>
+<button class="btn o sm" id="reset">Reset</button>
+</div>
+<div class="grid" id="grid"></div>
+</div></section>
+
+<section id="why"><div class="wrap">
+<div class="sh"><h2>Why choose KIVANO</h2></div>
+<div class="why">
+<div><h3>Instant delivery</h3><p>Your PDF is available as soon as your payment is confirmed.</p></div>
+<div><h3>Re-download anytime</h3><p>Every purchase is saved in your library, ready to download again.</p></div>
+<div><h3>Private and secure</h3><p>Files stay in private storage. Card details are handled by the payment provider, never by KIVANO.</p></div>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<div class="sh"><div><h2>What readers will say</h2><p>Demo content. Real reviews will replace these.</p></div></div>
+<div class="revs">
+<div class="rev"><p>“Sample review text showing where a reader’s comment will appear.”</p><span class="meta">Demo reviewer</span></div>
+<div class="rev"><p>“Another placeholder comment for layout purposes.”</p><span class="meta">Demo reviewer</span></div>
+<div class="rev"><p>“A third example, to be replaced with a real customer’s words.”</p><span class="meta">Demo reviewer</span></div>
+</div>
+</div></section>
+
+<section><div class="wrap"><div class="news">
+<h2>Get new titles in your inbox</h2>
+<p>One short email when new ebooks arrive. Unsubscribe anytime.</p>
+<form id="nf"><input type="email" id="em" required placeholder="you@example.com" aria-label="Email address"><button class="btn" type="submit">Subscribe</button></form>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><div class="cols">
+<div><b>KIVANO</b>Knowledge Without Limits.<br>Digital PDF ebooks for readers worldwide.</div>
+<div><b>Shop</b><a href="#shop">All ebooks</a><a href="#categories">Categories</a><a href="#picks">Bestsellers</a></div>
+<div><b>Help</b><a href="#">Contact</a><a href="#">Refund policy</a><a href="#">FAQ</a></div>
+<div><b>Legal</b><a href="#">Terms</a><a href="#">Privacy</a></div>
+</div><p style="margin:26px 0 0">© 2026 KIVANO. All titles shown are demo examples.</p></div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:30px">Your cart</h2><button class="x" id="closeCart">Close</button></div>
+<div class="items" id="items"></div>
+<div class="disc"><input id="code" placeholder="Discount code" aria-label="Discount code"><button class="btn o sm" id="apply">Apply</button></div>
+<div class="tot"><span>Subtotal</span><span id="sub">$0.00</span></div>
+<div class="tot" id="discRow" hidden><span>Discount</span><span id="dsc"></span></div>
+<div class="tot g"><span>Total</span><span id="tot">$0.00</span></div>
+<button class="btn" id="checkout" style="width:100%;margin-top:10px">Checkout</button>
+<p class="note">Digital products only. No shipping fees. Try the code KIVANO10 for a demo discount.</p>
+</aside>
+<dialog id="dlg" aria-label="Product details"></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+var CATS=['Business & Entrepreneurship','Marketing & Sales','Personal Development','Finance','Technology & AI','Productivity','Education','Health & Lifestyle'];
+var P=[
+{id:1,t:'The Quiet Founder',c:0,p:24,pg:142,mb:3.1,col:'#1d2b3a',pop:90,d:'A calm, practical guide to starting and growing a business without burnout.'},
+{id:2,t:'Sell Without Selling',c:1,p:19,pg:118,mb:2.4,col:'#7a3b2e',pop:80,d:'Learn honest, repeatable ways to win customers through trust.'},
+{id:3,t:'Mindset Atlas',c:2,p:15,pg:96,mb:1.8,col:'#2f4a3a',pop:70,d:'A map of habits and thinking tools for steady personal growth.'},
+{id:4,t:'Money Map 101',c:3,p:22,pg:130,mb:2.9,col:'#14110f',pop:85,d:'The basics of budgeting, saving and investing, explained simply.'},
+{id:5,t:'Prompt Craft',c:4,p:18,pg:104,mb:2.2,col:'#3b2d63',pop:95,d:'Write clearer prompts and get more useful results from AI tools.'},
+{id:6,t:'Deep Work Playbook',c:5,p:17,pg:88,mb:1.6,col:'#5b5a2a',pop:60,d:'Systems for protecting focus and finishing what matters.'},
+{id:7,t:'Learn Faster',c:6,p:14,pg:76,mb:1.4,col:'#7b5a2c',pop:50,d:'Study methods built on how memory actually works.'},
+{id:8,t:'Daily Vitality',c:7,p:16,pg:92,mb:2.0,col:'#1f5a60',pop:65,d:'Simple routines for energy, sleep and everyday wellbeing.'}];
+var $=function(s){return document.querySelector(s)};
+var cat=-1,cart=[],disc=0;
+try{cart=JSON.parse(localStorage.getItem('kv_cart')||'[]')||[]}catch(e){cart=[]}
+function save(){try{localStorage.setItem('kv_cart',JSON.stringify(cart))}catch(e){}}
+function usd(n){return '$'+n.toFixed(2)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+var ICON='<svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3"><circle cx="50" cy="50" r="42"/><circle cx="50" cy="50" r="28"/><circle cx="50" cy="50" r="14"/></svg>';
+function cover(p){return '<div class="cover" style="background:linear-gradient(155deg,'+p.col+',#000 170%)">'+ICON+'<span class="t">'+esc(p.t)+'</span><span class="a">Demo author</span></div>'}
+function card(p){return '<article class="card"><div data-open="'+p.id+'" role="button" tabindex="0" aria-label="View '+esc(p.t)+'">'+cover(p)+'</div><div><span class="badge">PDF format</span></div><h3 data-open="'+p.id+'">'+esc(p.t)+'</h3><div class="meta">'+CATS[p.c]+'<br>'+p.pg+' pages, '+p.mb.toFixed(1)+' MB</div><span class="demo">Demo example</span><div class="row"><span class="price">'+usd(p.p)+'</span><button class="btn sm" data-add="'+p.id+'">Add to cart</button></div></article>'}
+$('#stack').innerHTML=[P[0],P[4],P[3]].map(cover).join('');
+$('#picksGrid').innerHTML=P.slice().sort(function(a,b){return b.pop-a.pop}).slice(0,4).map(card).join('');
+$('#catGrid').innerHTML=CATS.map(function(n,i){var k=P.filter(function(p){return p.c===i}).length;return '<button class="cat" data-cat="'+i+'"><b>'+esc(n)+'</b><span>'+k+' ebook'+(k===1?'':'s')+'</span></button>'}).join('');
+function chips(){$('#chips').innerHTML=['All'].concat(CATS).map(function(n,i){return '<button class="chip" data-chip="'+(i-1)+'" aria-pressed="'+(cat===i-1)+'">'+esc(n)+'</button>'}).join('')}
+function render(){
+chips();
+var q=$('#q').value.trim().toLowerCase(),mx=+$('#price').value||1e9,s=$('#sort').value;
+var l=P.filter(function(p){return (cat<0||p.c===cat)&&p.p<mx&&(!q||(p.t+' '+p.d+' Demo author '+CATS[p.c]).toLowerCase().indexOf(q)>-1)});
+l.sort(function(a,b){return s==='lo'?a.p-b.p:s==='hi'?b.p-a.p:s==='pop'?b.pop-a.pop:b.id-a.id});
+$('#grid').innerHTML=l.length?l.map(card).join(''):'<p class="empty" style="grid-column:1/-1">No ebooks match. Try a different search or reset the filters.</p>';
+$('#resCount').textContent=l.length+' of '+P.length+' ebooks';
+}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('on')},2200)}
+function drawCart(){
+var it=cart.map(function(id){return P.filter(function(p){return p.id===id})[0]}).filter(Boolean);
+var sub=it.reduce(function(a,p){return a+p.p},0),d=sub*disc;
+$('#cnt').textContent=it.length;
+$('#items').innerHTML=it.length?it.map(function(p){return '<div class="li">'+cover(p)+'<div>'+esc(p.t)+'<br><small>PDF, '+usd(p.p)+'</small></div><button class="x" data-rm="'+p.id+'">Remove</button></div>'}).join(''):'<p class="empty">Your cart is empty. Add an ebook to get started.</p>';
+$('#sub').textContent=usd(sub);$('#discRow').hidden=!d;$('#dsc').textContent='-'+usd(d);$('#tot').textContent=usd(sub-d);
+$('#checkout').disabled=!it.length;
+}
+function openCart(o){$('#drawer').classList.toggle('open',o);$('#scrim').classList.toggle('on',o);$('#drawer').setAttribute('aria-hidden',!o);if(o)$('#closeCart').focus()}
+function add(id){if(cart.indexOf(id)>-1){toast('Already in your cart. Each ebook is bought once.');return}cart.push(id);save();drawCart();toast('Added to cart')}
+function detail(id){
+var p=P.filter(function(x){return x.id===id})[0];if(!p)return;
+var rel=P.filter(function(x){return x.c!==p.c}).slice(0,3).map(function(x){return esc(x.t)}).join(', ');
+$('#dlg').innerHTML='<div class="pd"><button class="x close" id="dx">Close</button>'+cover(p)+'<div><span class="badge">PDF format</span> <span class="demo">Demo example</span><h2 style="font-size:34px;margin:10px 0 4px">'+esc(p.t)+'</h2><div class="meta">Demo author, '+CATS[p.c]+'<br>'+p.pg+' pages, '+p.mb.toFixed(1)+' MB</div><p>'+esc(p.d)+' This is sample copy; the final description will be added in the admin area.</p><h3>What you will learn</h3><ul><li>Sample outcome one</li><li>Sample outcome two</li><li>Sample outcome three</li></ul><h3>Table of contents</h3><ul><li>Chapter 1: Sample chapter</li><li>Chapter 2: Sample chapter</li><li>Chapter 3: Sample chapter</li></ul><p class="meta">You may also like: '+rel+'</p><div class="row" style="margin-top:16px"><span class="price">'+usd(p.p)+'</span><span style="display:flex;gap:8px"><button class="btn o sm" data-add="'+p.id+'">Add to cart</button><button class="btn sm" data-buy="'+p.id+'">Buy now</button></span></div></div></div>';
+$('#dlg').showModal();
+}
+document.addEventListener('click',function(e){
+var t=e.target.closest('[data-add],[data-open],[data-cat],[data-chip],[data-rm],[data-buy]');if(!t)return;
+var d=t.dataset;
+if(d.add)add(+d.add);
+else if(d.buy){add(+d.buy);$('#dlg').close();openCart(true)}
+else if(d.open)detail(+d.open);
+else if(d.cat!==undefined){cat=+d.cat;render();$('#shop').scrollIntoView()}
+else if(d.chip!==undefined){cat=+d.chip;render()}
+else if(d.rm){cart=cart.filter(function(i){return i!==+d.rm});save();drawCart()}
+});
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.open){e.preventDefault();detail(+e.target.dataset.open)}if(e.key==='Escape')openCart(false)});
+document.addEventListener('click',function(e){if(e.target.id==='dx'||e.target===$('#dlg'))$('#dlg').close()});
+$('#openCart').onclick=function(){openCart(true)};
+$('#closeCart').onclick=$('#scrim').onclick=function(){openCart(false)};
+['#q','#price','#sort'].forEach(function(s){$(s).addEventListener('input',render)});
+$('#reset').onclick=function(){$('#q').value='';$('#price').value='';$('#sort').value='new';cat=-1;render()};
+$('#apply').onclick=function(){var c=$('#code').value.trim().toUpperCase();if(c==='KIVANO10'){disc=.1;toast('Demo code applied: 10% off')}else{disc=0;toast('That code isn’t valid')}drawCart()};
+$('#checkout').onclick=function(){toast('Checkout is not connected yet. Payments will be added in the next step.')};
+$('#nf').onsubmit=function(e){e.preventDefault();toast('Thanks! Newsletter signup will be connected soon.');$('#em').value=''};
+render();drawCart();
+})();
+</script>
+</body>
+</html>
